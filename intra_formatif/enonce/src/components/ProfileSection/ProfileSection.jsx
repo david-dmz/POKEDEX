@@ -11,9 +11,9 @@ export default function ProfileSection(props) {
       <h2>Profil Utilisateur</h2>
       <div className="user-box">
         {/* ÉTAPE 2 : Remplacer par props.user.name, etc. */}
-        <p>Nom : {USER_DATA.name}</p>
-        <p>Rôle : {USER_DATA.role}</p>
-        <p>Membre depuis : {USER_DATA.joinDate}</p>
+        <p>Nom : {props}</p>
+        <p>Rôle : {props}</p>
+        <p>Membre depuis : {props}</p>
       </div>
     </section>
   );
