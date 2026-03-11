@@ -4,10 +4,10 @@ export default function DestinationList({ items }) {
     <section className="exo-3">
       <h2>Destinations</h2>
       <ul>
-        {/* Rendu laid à remplacer par items.map(...) */}
-        <li>
-      {items.name} - {items.price} (Départ: {items.date})</li>
-  
+        
+          {items.map(item =>
+   <li>   {item.name} - {item.price} (Départ: {item.date})</li>
+          )}
       </ul>
     </section>
   );
