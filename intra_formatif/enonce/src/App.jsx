@@ -17,7 +17,7 @@ function App() {
     <div className="container">
       <ServiceManager />
       <hr />
-      <ProfileSection user={user} />
+      <ProfileSection user = {user}/>
       <hr />
       <DestinationList items={destinations} />
     </div>
