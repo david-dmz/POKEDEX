@@ -11,11 +11,25 @@ function App() {
     { id: 3, name: "Rome", price: "1100$", date: "10 Juillet" }
   ];
 
+  const SERVER_CONFIG = {
+    id: "SRV-99-ALPHA",
+    specs: {
+      cpu: "8 Cores",
+      ram: "32GB",
+      storage: "1TB NVMe"
+    },
+    network: {
+      ip: "192.168.1.105",
+      status: "Online",
+      lastBackup: "2026-03-14"
+    },
+    admin: "Alex Prof" 
+  };
   return (
     <div className="container">
       <ServiceManager />
       <hr />
-      <ProfileSection />
+      <ProfileSection config = {SERVER_CONFIG} />
       <hr />
       <DestinationList items={destinations} />
     </div>
