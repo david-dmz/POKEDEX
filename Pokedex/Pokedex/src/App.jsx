@@ -84,14 +84,7 @@ export default function App() {
             </p>
 
           </div>
-          {/*
-          <div>
-            <p>
-              <strong>Weakness: </strong> {pokemonData.types.map(t => t.type.url.damage_relations).join(", ")}
-            </p>
-          
-          </div>
-          */}
+  
           <div className="pokemon-stats">
             <p>
               <strong>Poids :</strong> {pokemonData.weight / 10} kg
@@ -100,7 +93,6 @@ export default function App() {
               <strong>Taille :</strong> {pokemonData.height / 10} m
             </p>
           </div>
-
           <div className="navigation-buttons">
             <button
               onClick={() => setPokemonId((prev) => prev - 1)}
