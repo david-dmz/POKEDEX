@@ -133,3 +133,35 @@ h1 {
   cursor: not-allowed;
   opacity: 0.6;
 }
+/* Base style for every badge */
+.type-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-right: 5px;
+  font-size: 0.85rem;
+  font-family: sans-serif;
+}
+
+/* Specific type background colors */
+.grass { background-color: #78C850; }
+.fire { background-color: #F08030; }
+.water { background-color: #6890F0; }
+.electric { background-color: #F8D030; color: #333; } /* dark text for contrast */
+.poison { background-color: #A040A0; }
+.flying { background-color: #A890F0; }
+.bug { background-color: #A8B820; }
+.normal { background-color: #A8A878; }
+.psychic { background-color: #F85888; }
+.ice { background-color: #98D8D8; color: #333; }
+.rock { background-color: #B8A038; }
+.ground { background-color: #E0C068; color: #333; }
+.ghost { background-color: #705898; }
+.dragon { background-color: #7038F8; }
+.steel { background-color: #B8B8D0; color: #333; }
+.fairy { background-color: #EE99AC; }
+.fighting { background-color: #C03028; }
+.dark { background-color: #705848; }

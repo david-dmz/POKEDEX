@@ -1,47 +1,46 @@
-import React from "react"
-import "./App.css"
+import React from "react";
+import "./App.css";
 
 export default function App() {
-  const [pokemonData, setPokemonData] = React.useState(null)
-  const [pokemonId, setPokemonId] = React.useState(1) // Single source of truth
-  const [searchTerm, setSearchTerm] = React.useState("")
-  const [error, setError] = React.useState(false)
+  const [pokemonData, setPokemonData] = React.useState(null);
+  const [pokemonId, setPokemonId] = React.useState(1); // Single source of truth
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
-    setError(false)
-    
+    setError(false);
+
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Non trouvé")
-        return res.json()
+      .then((res) => {
+        if (!res.ok) throw new Error("Non trouvé");
+        return res.json();
       })
-      .then(data => {
-        setPokemonData(data)
-        setSearchTerm("") 
+      .then((data) => {
+        setPokemonData(data);
+        setSearchTerm("");
       })
-      .catch(err => {
-        console.error(err)
-        setError(true)
-      })
-  }, [pokemonId])
+      .catch((err) => {
+        console.error(err);
+        setError(true);
+      });
+  }, [pokemonId]);
 
   function handleSearch(e) {
-    e.preventDefault()
-    const query = searchTerm.toLowerCase().trim()
-    if (!query) return
+    e.preventDefault();
+    const query = searchTerm.toLowerCase().trim();
+    if (!query) return;
 
-    // We fetch the searched name just to find its ID, then jump our state to it!
-    fetch(`https://pokeapi.co/api/v2/pokemon/${query}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Pokémon non trouvé")
-        return res.json()
+    fetch(`https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Pokémon non trouvé");
+        return res.json();
       })
-      .then(data => {
-        setPokemonId(data.id)
+      .then((data) => {
+        setPokemonId(data.id);
       })
       .catch(() => {
-        setError(true)
-      })
+        setError(true);
+      });
   }
 
   return (
@@ -50,14 +49,16 @@ export default function App() {
 
       {/*  Search Bar */}
       <form className="search-bar" onSubmit={handleSearch}>
-        <input 
-          type="text" 
-          placeholder="Nom en anglais ou ID du Pokémon..." 
+        <input
+          type="text"
+          placeholder="Nom en anglais ou ID du Pokémon..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
         />
-        <button type="submit" className="search-btn">Rechercher</button>
+        <button type="submit" className="search-btn">
+          Rechercher
+        </button>
       </form>
 
       {/*  Error Message */}
@@ -67,36 +68,57 @@ export default function App() {
         <div className="pokemon-profile-card">
           <span className="pokemon-id"># {pokemonData.id}</span>
           <h3 className="pokemon-name">{pokemonData.name}</h3>
-          
-          <img 
-            src={pokemonData.sprites.front_default} 
-            alt={pokemonData.name} 
+
+          <img
+            src={pokemonData.sprites.front_default}
+            alt={pokemonData.name}
             className="pokemon-sprite"
           />
+          <div>
+            <p>
+              <strong>Type: </strong> {pokemonData.types.map((t, index) => (
+                <span key={index} className={`type-badge ${t.type.name}`}>
+                  {t.type.name}
+                </span>
+              )) }
+            </p>
 
+          </div>
+          {/*
+          <div>
+            <p>
+              <strong>Weakness: </strong> {pokemonData.types.map(t => t.type.url.damage_relations).join(", ")}
+            </p>
+          
+          </div>
+          */}
           <div className="pokemon-stats">
-            <p><strong>Poids :</strong> {pokemonData.weight / 10} kg</p>
-            <p><strong>Taille :</strong> {pokemonData.height / 10} m</p>
+            <p>
+              <strong>Poids :</strong> {pokemonData.weight / 10} kg
+            </p>
+            <p>
+              <strong>Taille :</strong> {pokemonData.height / 10} m
+            </p>
           </div>
 
           <div className="navigation-buttons">
-            <button 
-              onClick={() => setPokemonId(prev => prev - 1)} 
+            <button
+              onClick={() => setPokemonId((prev) => prev - 1)}
               disabled={pokemonId <= 1}
               className="nav-btn"
             >
               Précédent
             </button>
 
-            <button 
-              onClick={() => setPokemonId(prev => prev + 1)} 
+            <button
+              onClick={() => setPokemonId((prev) => prev + 1)}
               className="nav-btn"
             >
-              Suivant 
+              Suivant
             </button>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
