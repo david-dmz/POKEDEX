@@ -1,4 +1,6 @@
-function App() {
+import './App.css'
+
+export default function App() {
 
     function signUp(formData) { 
         const data = Object.fromEntries(formData)
@@ -108,4 +110,3 @@ function App() {
     )
 }
 
-export default App
