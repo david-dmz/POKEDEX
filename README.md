@@ -33,6 +33,7 @@ Pour tester le projet sur votre machine :
    npm start
    ```
 ## Structure du Code:
+
 ├── public/          # Fichiers statiques (index.html, favicon)
 ├── src/
 │   ├── components/  # Composants (Card, SearchBar, Header)
